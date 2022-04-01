@@ -1,20 +1,29 @@
-name: DEV TEST
+name: DEV APP MIOWOW DRIVER
 
 on: workflow_dispatch
+
+env:
+  TELEGRAM_TO: -563879366
+  TELEGRAM_TOKEN: 1914674250:AAFGBB_ZRxaagWaCDiIhv6f_aqaBGKk8FL0
+  APP_VERSION_NAME: '1.0.1'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./packages/mobile
     container:
       image: docker://fabernovel/android:api-29-v1.1.0
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@master
       - uses: actions/setup-python@v2
-
       - name: Env writer
         run: |
-          echo "ENV=DEV" >> packages/mobile/.env.dev
+          echo "ENV=DEV" >> .env.dev
+          echo "BASE_URL=${{ secrets.DEV_API_ENDPOINT }}" >> .env.dev
+          echo '${{ secrets.DEV_GOOGLE_SERVICES_JSON }}' >>  android/app/google-services.json
 
       - name: Use Node 14
         uses: actions/setup-node@v2
@@ -31,14 +40,15 @@ jobs:
         run: yarn
 
       - name: Make Gradlew Executable
-        run: cd packages/mobile && cd android && chmod +x ./gradlew
+        run: cd android && chmod +x ./gradlew
 
       - name: Update gradle version for Android
         uses: damienaicheh/update-android-version-gradle-action@v1.0.0
         with:
-          build-gradle-path: packages/mobile/android/app/build.gradle
+          build-gradle-path: android/app/build.gradle
+          version-code: ${{ github.run_number }}
           print-file: true
 
       - name: Build Android App Bundle
         run: |
-          cd packages/mobile/android && ENVFILE=.env.dev ./gradlew assembledevRelease --no-daemon
+          cd android && ENVFILE=.env.dev ./gradlew assembledevRelease --no-daemon
