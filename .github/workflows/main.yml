@@ -2,17 +2,12 @@ name: DEV APP TEST
 
 on: workflow_dispatch
 
-env:
-  TELEGRAM_TO: -563879366
-  TELEGRAM_TOKEN: 1914674250:AAFGBB_ZRxaagWaCDiIhv6f_aqaBGKk8FL0
-  APP_VERSION_NAME: '1.0.1'
-
+defaults:
+  run:
+    working-directory: packages/mobile
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./packages/mobile
     container:
       image: docker://fabernovel/android:api-29-v1.1.0
     steps:
@@ -22,9 +17,6 @@ jobs:
       - name: Env writer
         run: |
           echo "ENV=DEV" >> .env.dev
-          echo "BASE_URL=${{ secrets.DEV_API_ENDPOINT }}" >> .env.dev
-          echo '${{ secrets.DEV_GOOGLE_SERVICES_JSON }}' >>  android/app/google-services.json
-
       - name: Use Node 14
         uses: actions/setup-node@v2
         with:
