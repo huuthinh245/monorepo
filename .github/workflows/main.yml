@@ -37,7 +37,7 @@ jobs:
       - name: Update gradle version for Android
         uses: damienaicheh/update-android-version-gradle-action@v1.0.0
         with:
-          build-gradle-path: android/app/build.gradle
+          build-gradle-path: packages/mobile/android/app/build.gradle
           version-code: ${{ github.run_number }}
           print-file: true
 
