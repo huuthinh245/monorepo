@@ -1,4 +1,4 @@
-name: DEV APP TEST
+name: DEV APP CUSTOMER
 
 on: workflow_dispatch
 
