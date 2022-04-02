@@ -11,11 +11,9 @@
   },
   "scripts": {
     "reset": "find . -type dir -name node_modules | xargs rm -rf && rm -rf yarn.lock",
-    "android:metro": "yarn workspace @my-app/mobile start",
-    "android:start": "yarn workspace @my-app/mobile android",
-    "android:studio": "yarn workspace @my-app/mobile studio",
-    "ios:metro": "yarn workspace @my-app/mobile start",
-    "ios:start": "yarn workspace @my-app/mobile ios",
-    "ios:xcode": "yarn workspace @my-app/mobile xcode"
+    "android:mobile": "yarn workspace @my-app/mobile android",
+    "android:customer": "yarn workspace @my-app/customer android",
+    "ios:mobile": "yarn workspace @my-app/mobile ios",
+    "ios:customer": "yarn workspace @my-app/customer ios"
   }
 }

@@ -1,0 +1,62 @@
+name: DEV APP TEST
+
+on: workflow_dispatch
+
+defaults:
+  run:
+    working-directory: packages/customer
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: docker://fabernovel/android:api-29-v1.1.0
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@master
+      - uses: actions/setup-python@v2
+      - name: Env writer
+        run: |
+          echo "ENV=DEV" >> .env.dev
+      - name: Use Node 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install yarn
+        run: npm install -g yarn
+        
+      - name: Install firebase CLI
+        run: npm install -g firebase-tools
+
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Make Gradlew Executable
+        run: cd android && chmod +x ./gradlew
+
+      - name: Update gradle version for Android
+        uses: damienaicheh/update-android-version-gradle-action@v1.0.0
+        with:
+          build-gradle-path: packages/customer/android/app/build.gradle
+          version-code: ${{ github.run_number }}
+          print-file: true
+
+      - name: Build Android App Bundle
+        run: |
+          cd android && ENVFILE=.env.dev ./gradlew assembleRelease --no-daemon
+      - name: Distribute app via Firebase App Distribution
+        env:
+          firebaseToken: 1//0eFBQn97fYcTfCgYIARAAGA4SNwF-L9IrZj_umZ2D_EhVyxaLVTnCjw20U4BtWa6L76Yp6ODkAS6wf9YGVMlp_uBxD0JlQMya_w0
+          firebaseGroups: tester
+          firebaseAppId: 1:588230522245:android:1bfa1776fbdfbb8f6c80ec
+          notes: ${{ github.event.head_commit.message }}
+        run: |
+          yarn global add firebase-tools
+          export PATH="$(yarn global bin):$PATH"
+          firebase \
+            appdistribution:distribute android/app/build/outputs/apk/release/app-release.apk \
+            --app $firebaseAppId \
+            --release-notes "$notes" \
+            --groups "$firebaseGroups" \
+            --token "$firebaseToken"
