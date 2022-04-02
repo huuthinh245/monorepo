@@ -51,12 +51,12 @@ jobs:
           firebaseGroups: tester
           firebaseAppId: 1:588230522245:android:4ec545ad1d1125de6c80ec
           notes: ${{ github.event.head_commit.message }}
-          run: |
-            yarn global add firebase-tools
-            export PATH="$(yarn global bin):$PATH"
-            firebase \
-              appdistribution:distribute android/app/build/outputs/apk/release/app-release.apk \
-              --app $firebaseAppId \
-              --release-notes "$notes" \
-              --groups "$firebaseGroups" \
-              --token "$firebaseToken"
+        run: |
+          yarn global add firebase-tools
+          export PATH="$(yarn global bin):$PATH"
+          firebase \
+            appdistribution:distribute android/app/build/outputs/apk/release/app-release.apk \
+            --app $firebaseAppId \
+            --release-notes "$notes" \
+            --groups "$firebaseGroups" \
+            --token "$firebaseToken"
