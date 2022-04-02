@@ -41,3 +41,18 @@ jobs:
       - name: Build Android App Bundle
         run: |
           cd android && ENVFILE=.env.dev ./gradlew assembleRelease --no-daemon
+      - name: Distribute app via Firebase App Distribution
+          env:
+            firebaseToken: 1//0eFBQn97fYcTfCgYIARAAGA4SNwF-L9IrZj_umZ2D_EhVyxaLVTnCjw20U4BtWa6L76Yp6ODkAS6wf9YGVMlp_uBxD0JlQMya_w0
+            firebaseGroups: tester
+            firebaseAppId: 1:588230522245:android:4ec545ad1d1125de6c80ec
+            notes: ${{ github.event.head_commit.message }}
+          run: |
+            yarn global add firebase-tools
+            export PATH="$(yarn global bin):$PATH"
+            firebase \
+              appdistribution:distribute android/app/build/outputs/apk/release/app-release.apk \
+              --app $firebaseAppId \
+              --release-notes "$notes" \
+              --groups "$firebaseGroups" \
+              --token "$firebaseToken"
