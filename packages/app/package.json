@@ -6,5 +6,9 @@
     "peerDependencies": {
       "react": "*",
       "react-native": "*"
+    },
+    "devDependencies": {
+      "@types/react": "17.0.5",
+      "@types/react-native": "0.67.3"
     }
-  }
+}
