@@ -18,7 +18,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
+import ShareComponent from '@my-app/app';
 import {
   Colors,
   DebugInstructions,
@@ -42,6 +42,7 @@ const Section: React.FC<{
         ]}>
         {title}
       </Text>
+      <ShareComponent/>
       <Text
         style={[
           styles.sectionDescription,

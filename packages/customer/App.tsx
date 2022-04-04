@@ -18,7 +18,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
+import ShareComponent from '@my-app/app';
 import {
   Colors,
   DebugInstructions,
@@ -76,6 +76,7 @@ const App = () => {
           <Section title="Step One">
             customer
           </Section>
+          <ShareComponent/>
           <Section title="See Your Changes">
             <ReloadInstructions />
           </Section>

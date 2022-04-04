@@ -6,13 +6,17 @@
     "packages": ["packages/*"],
     "nohoist": [
       "**/react-native",
-      "**/react-native/**"
+      "**/react-native/**",
+      "**/@react-native/**",
+      "react",
+      "react/**"
     ]
   },
   "scripts": {
     "reset": "find . -type dir -name node_modules | xargs rm -rf && rm -rf yarn.lock",
     "android:mobile": "yarn workspace @my-app/mobile android",
     "android:customer": "yarn workspace @my-app/customer android",
+    "android:myapp": "yarn workspace @my-app/testmyapp android-stg",
     "ios:mobile": "yarn workspace @my-app/mobile ios",
     "ios:customer": "yarn workspace @my-app/customer ios"
   }
