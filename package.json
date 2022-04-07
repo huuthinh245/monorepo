@@ -9,7 +9,9 @@
       "**/react-native/**",
       "**/@react-native/**",
       "react",
-      "react/**"
+      "react/**",
+      "@react-navigation",
+      "@react-navigation/**"
     ]
   },
   "scripts": {
@@ -18,6 +20,7 @@
     "android:customer": "yarn workspace @my-app/customer android",
     "android:myapp": "yarn workspace @my-app/testmyapp android-stg",
     "ios:mobile": "yarn workspace @my-app/mobile ios",
-    "ios:customer": "yarn workspace @my-app/customer ios"
+    "ios:customer": "yarn workspace @my-app/customer ios",
+    "android:abc-stg":"yarn workspace @my-app/abc debug-stg"
   }
 }

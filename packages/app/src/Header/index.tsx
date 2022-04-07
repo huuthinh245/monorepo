@@ -8,17 +8,14 @@ import {
   View,
 } from "react-native";
 
-export function App({ title}: { title: string}) {
+interface Props {
+  title: string;
+}
+export function Header({ title }: Props) {
   return (
-    <SafeAreaView style={styles.root}>
-      <Text style={styles.text}>Hello from React Native Share component!</Text>
-      <View style={styles.platformRow}>
-        <Text style={styles.text}>App: </Text>
-        <View style={styles.platformBackground}>
-          <Text style={styles.platformValue}>{title}</Text>
-        </View>
-      </View>
-    </SafeAreaView>
+    <View style={styles.platformBackground}>
+      <Text style={styles.platformValue}>{title}</Text>
+    </View>
   );
 }
 
@@ -57,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Header;

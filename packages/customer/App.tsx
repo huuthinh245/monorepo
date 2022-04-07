@@ -26,7 +26,8 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
+import Icon from 'react-native-vector-icons/Feather';
+import Svg, { Circle, Rect } from 'react-native-svg';
 const Section: React.FC<{
   title: string;
 }> = ({children, title}) => {
@@ -73,20 +74,8 @@ const App = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">
-            customer
-          </Section>
-          <ShareComponent/>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+          <ShareComponent title="customer"/>
+          <Icon name="wifi-off" size={30} color="#000000" style={{ width: 50, height: 50}}/>
         </View>
       </ScrollView>
     </SafeAreaView>
