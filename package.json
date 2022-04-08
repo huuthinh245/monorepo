@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "workspaces": {
-    "packages": ["packages/*"],
+    "packages": [
+      "packages/*",
+      "packages/mobile",
+      "packages/customer"
+    ],
     "nohoist": [
       "**/react-native",
       "**/react-native/**",
@@ -14,6 +18,9 @@
       "@react-navigation/**"
     ]
   },
+  "dependencies": {
+    "react-native-device-info": "^8.7.0"
+  },
   "scripts": {
     "reset": "find . -type dir -name node_modules | xargs rm -rf && rm -rf yarn.lock",
     "android:mobile": "yarn workspace @my-app/mobile android",
@@ -21,6 +28,6 @@
     "android:myapp": "yarn workspace @my-app/testmyapp android-stg",
     "ios:mobile": "yarn workspace @my-app/mobile ios",
     "ios:customer": "yarn workspace @my-app/customer ios",
-    "android:abc-stg":"yarn workspace @my-app/abc debug-stg"
+    "android:abc-stg": "yarn workspace @my-app/abc debug-stg"
   }
 }

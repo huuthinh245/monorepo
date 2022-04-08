@@ -12,7 +12,8 @@
   "dependencies": {
     "@my-app/app": "*",
     "react": "17.0.2",
-    "react-native": "0.68.0"
+    "react-native": "0.68.0",
+    "react-native-image-picker": "^4.7.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

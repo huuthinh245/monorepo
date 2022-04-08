@@ -27,10 +27,12 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Icon from 'react-native-vector-icons/Feather';
-import Svg, { Circle, Rect } from 'react-native-svg';
+import Svg, {Circle, Rect} from 'react-native-svg';
+import {takePhoto} from '@my-app/app/src/ImagePicker';
+import {deviceId, model} from '@my-app/app/src/DeviceInfo';
 const Section: React.FC<{
   title: string;
-}> = ({children, title}) => {
+}> = ({title}) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -50,7 +52,6 @@ const Section: React.FC<{
             color: isDarkMode ? Colors.light : Colors.dark,
           },
         ]}>
-        {children}
       </Text>
     </View>
   );
@@ -74,8 +75,16 @@ const App = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <ShareComponent title="customer"/>
-          <Icon name="wifi-off" size={30} color="#000000" style={{ width: 50, height: 50}}/>
+          <ShareComponent title="customer" />
+          <Icon
+            name="wifi-off"
+            size={30}
+            color="#000000"
+            style={{width: 50, height: 50}}
+            onPress={takePhoto}
+          />
+          <Text>{deviceId}</Text>
+          <Text>{model}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
