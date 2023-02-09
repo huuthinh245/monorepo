@@ -8,10 +8,10 @@ import {
   View,
 } from "react-native";
 
-export function App({ title}: { title: string}) {
+export function App({ title }: { title: string }) {
   return (
     <SafeAreaView style={styles.root}>
-      <Text style={styles.text}>Hello from React Native Share component!</Text>
+      <Text style={styles.text}>gggg</Text>
       <View style={styles.platformRow}>
         <Text style={styles.text}>App: </Text>
         <View style={styles.platformBackground}>
