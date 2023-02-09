@@ -5,6 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "pod-install": "npx pod-install",
     "start": "react-native start --reset-cache",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
@@ -13,8 +14,8 @@
     "@my-app/app": "*",
     "react": "17.0.2",
     "react-native": "0.68.0",
-    "react-native-image-picker": "^4.7.3",
-    "react-native-device-info": "*"
+    "react-native-device-info": "*",
+    "react-native-image-picker": "^4.7.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
