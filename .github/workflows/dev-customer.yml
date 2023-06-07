@@ -41,11 +41,14 @@ jobs:
           build-gradle-path: packages/customer/android/app/build.gradle
           version-code: ${{ github.run_number }}
           print-file: true
-
+  apk:
+    runs-on: ubuntu-latest
+    name: Build APK
+    steps:
       - name: Build Android App Bundle
         run: |
           cd android && ENVFILE=.env.dev ./gradlew assembleRelease --no-daemon
-      - name: Distribute app via Firebase App Distribution
+      - name: Distribute app via Firebase App Distribution  
         env:
           firebaseToken: 1//0eFBQn97fYcTfCgYIARAAGA4SNwF-L9IrZj_umZ2D_EhVyxaLVTnCjw20U4BtWa6L76Yp6ODkAS6wf9YGVMlp_uBxD0JlQMya_w0
           firebaseGroups: tester
