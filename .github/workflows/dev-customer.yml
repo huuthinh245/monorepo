@@ -44,6 +44,7 @@ jobs:
   apk:
     runs-on: ubuntu-latest
     name: Build APK
+    needs: [build]
     steps:
       - name: Build Android App Bundle
         run: |
